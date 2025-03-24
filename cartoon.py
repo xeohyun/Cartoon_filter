@@ -45,7 +45,7 @@ def create_cartoon_image(image):
 
 # 예시용 main 함수
 if __name__ == "__main__":
-    image_bgr = cv2.imread("img.jpg")
+    image_bgr = cv2.imread("img3.jpg")
     if image_bgr is None:
         print("Failed to load image.")
         exit()
@@ -55,6 +55,12 @@ if __name__ == "__main__":
 
     # 필터 결과만 보기 (OpenCV로 띄우기)
     cartoon_bgr = cv2.cvtColor(cartoon_image, cv2.COLOR_RGB2BGR)
-    cv2.imshow("Cartoon Filter", cartoon_bgr)
+
+
+   # 원본 + 결과 이미지 hstack
+    combined = cv2.hconcat([image_bgr, cartoon_bgr])
+    
+    # 화면 출력
+    cv2.imshow("Original vs Cartoon", combined)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
